@@ -1,5 +1,5 @@
 html {
-  --dark: #111;
+  --dark: #181818;
   --light: #eee;
 
   width: 100vw;
@@ -37,9 +37,16 @@ nav {
   height: 5vh;
 
   position: absolute;
+  z-index: 9999;
   left: 95vw;
 
   background-color: #dddddd80;
+  transition: all 0.25s ease-in-out;
+}
+
+#upBtn:hover,
+#downBtn:hover {
+  background-color: #ddd;
 }
 
 #upBtn {
@@ -91,9 +98,19 @@ nav {
 
   width: 30vw;
   height: 70vh;
+  padding: calc(1vh + 1vw);
 
-  font-size: 5vh;
+  background-image: url("../img/frostedGlass.png"), linear-gradient(var(--dark) 0%, var(--dark) 100%);
+  background-position: center;
+  background-size: cover;
+
+  font-size: 3vh;
   font-weight: bold;
+}
+
+.LSec h2, .RSec h2 {
+  font-size: 5vh;
+  text-align: center;
 }
 
 .card {

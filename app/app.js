@@ -26,14 +26,30 @@ function scrollAnim(e) {
     for (let j = 1; j < (secCount + 1); j++) {
         const LSection = LSec[j];
         const RSection = RSec[j];
+        var transform = 1 / Math.sqrt((-1 * (depth - (j*100)) / 100) + 1);
+
+        LSection.style.transform = `scale(${transform}, ${transform})`;
+        RSection.style.transform = `scale(${transform}, ${transform})`;
         
-        if (depth > j * 100 - 55 && depth < j * 100 + 45) {
+        if (depth < j * 100 - 15) {
+
+            LSection.style.zIndex = 99-j;
+            RSection.style.zIndex = 99-j;
+
+        } else if (depth > j * 100 + 45) {
+
+            LSection.style.opacity = 0;
+            RSection.style.opacity = 0;
+
+            LSection.style.zIndex = 0;
+            RSection.style.zIndex = 0;
+
+        } else {
+
             var LRotate = ((j * 100) - depth - 10) * -1.8;
             var RRotate = ((j * 100) - depth - 10) * 1.8;
 
             if (depth > j * 100) {
-                var transform = ((j * 100) - depth) / 3;
-
                 LSection.style.transform = `rotateY(${LRotate}deg) translateX(${transform}vw)`;
                 LSection.style.left = `${10 + transform}vw`;
                 RSection.style.transform = `rotateY(${RRotate}deg) translateX(${-1 * transform}vw)`;
@@ -45,16 +61,11 @@ function scrollAnim(e) {
 
             LSection.style.opacity = 1;
             RSection.style.opacity = 1;
-            LSection.style.zIndex = 1;
-            RSection.style.zIndex = 1;
+            LSection.style.zIndex = 99;
+            RSection.style.zIndex = 99;
 
             upBtn.href = `#card${j-1}`
             downBtn.href = `#card${j+1}`
-        } else {
-            LSection.style.opacity = 0;
-            RSection.style.opacity = 0;
-            LSection.style.zIndex = 0;
-            RSection.style.zIndex = 0;
         }
     }
 }

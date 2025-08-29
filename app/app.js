@@ -35,7 +35,9 @@ function scrollAnim(e) {
                 var transform = ((j * 100) - depth) / 3;
 
                 LSection.style.transform = `rotateY(${LRotate}deg) translateX(${transform}vw)`;
+                LSection.style.left = `${10 + transform}vw`;
                 RSection.style.transform = `rotateY(${RRotate}deg) translateX(${-1 * transform}vw)`;
+                RSection.style.left = `${60 - transform}vw`;
             } else {
                 LSection.style.transform = `rotateY(${LRotate}deg)`;
                 RSection.style.transform = `rotateY(${RRotate}deg)`;

@@ -21,22 +21,23 @@ function scrollAnim(e) {
     const scrollY = window.scrollY;
     
     depth = 100 + (100 * scrollY / screenHeight);
-    console.log("Depth: ", depth);
+    console.log("Depth is ", depth);
 
     for (let j = 1; j < (secCount + 1); j++) {
         const LSection = LSec[j];
         const RSection = RSec[j];
-        var transform = 1 / Math.sqrt((-1 * (depth - (j*100)) / 100) + 1);
+        var transform = 1 / Math.sqrt((-3 * (depth - (j*100)) / 100) + 1);
 
         LSection.style.transform = `scale(${transform}, ${transform})`;
+        LSection.style.left = `${11 - transform}vw`;
+
         RSection.style.transform = `scale(${transform}, ${transform})`;
-        
-        if (depth < j * 100 - 15) {
+        RSection.style.left = `${61 + transform}vw`;
 
-            LSection.style.zIndex = 99-j;
-            RSection.style.zIndex = 99-j;
+        LSection.style.zIndex = (99 - j);
+        RSection.style.zIndex = (99 - j);
 
-        } else if (depth > j * 100 + 45) {
+        if (depth > j * 100 + 45) {
 
             LSection.style.opacity = 0;
             RSection.style.opacity = 0;
@@ -48,21 +49,11 @@ function scrollAnim(e) {
 
             var LRotate = ((j * 100) - depth - 10) * -1.8;
             var RRotate = ((j * 100) - depth - 10) * 1.8;
-
-            if (depth > j * 100) {
-                LSection.style.transform = `rotateY(${LRotate}deg) translateX(${transform}vw)`;
-                LSection.style.left = `${10 + transform}vw`;
-                RSection.style.transform = `rotateY(${RRotate}deg) translateX(${-1 * transform}vw)`;
-                RSection.style.left = `${60 - transform}vw`;
-            } else {
-                LSection.style.transform = `rotateY(${LRotate}deg)`;
-                RSection.style.transform = `rotateY(${RRotate}deg)`;
-            }
+            LSection.style.transform = `rotateY(${LRotate}deg)`;
+            RSection.style.transform = `rotateY(${RRotate}deg)`;
 
             LSection.style.opacity = 1;
             RSection.style.opacity = 1;
-            LSection.style.zIndex = 99;
-            RSection.style.zIndex = 99;
 
             upBtn.href = `#card${j-1}`
             downBtn.href = `#card${j+1}`

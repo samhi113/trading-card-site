@@ -26,13 +26,16 @@ function scrollAnim(e) {
     for (let j = 1; j < (secCount + 1); j++) {
         const LSection = LSec[j];
         const RSection = RSec[j];
-        var transform = 1 / Math.sqrt((-3 * (depth - (j*100)) / 100) + 1);
+        var depthPct = (depth - (j*100)) / 100;
+        var transform = 1 / Math.sqrt((-2 * depthPct) + 1);
+        var translate =  (1 / Math.sqrt((-1 * depthPct) + 0.5)) - 1.4142;
+        translate = 5 * translate;
 
-        LSection.style.transform = `scale(${transform}, ${transform})`;
-        LSection.style.left = `${11 - transform}vw`;
+        LSection.style.left = `${15 - translate}vw`;
+        LSection.style.perspective = `${10 * transform}vw`;
 
-        RSection.style.transform = `scale(${transform}, ${transform})`;
-        RSection.style.left = `${61 + transform}vw`;
+        RSection.style.left = `${55 + translate}vw`;
+        RSection.style.perspective = `${10 * transform}vw`;
 
         LSection.style.zIndex = (99 - j);
         RSection.style.zIndex = (99 - j);
@@ -45,12 +48,22 @@ function scrollAnim(e) {
             LSection.style.zIndex = 0;
             RSection.style.zIndex = 0;
 
+        } else if (depth < j * 100) {
+
+            var LRotate = ((j * 100) - depth - 10) * 0.2;
+            var RRotate = ((j * 100) - depth - 10) * -0.2;
+            LSection.style.transform = `rotateY(${LRotate}deg) scale(${transform}, ${transform})`;
+            RSection.style.transform = `rotateY(${RRotate}deg) scale(${transform}, ${transform})`;
+
+            LSection.style.opacity = 1;
+            RSection.style.opacity = 1;
+
         } else {
 
             var LRotate = ((j * 100) - depth - 10) * -1.8;
             var RRotate = ((j * 100) - depth - 10) * 1.8;
-            LSection.style.transform = `rotateY(${LRotate}deg)`;
-            RSection.style.transform = `rotateY(${RRotate}deg)`;
+            LSection.style.transform = `rotateY(${LRotate}deg) scale(${transform}, ${transform})`;
+            RSection.style.transform = `rotateY(${RRotate}deg) scale(${transform}, ${transform})`;
 
             LSection.style.opacity = 1;
             RSection.style.opacity = 1;

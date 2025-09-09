@@ -68,8 +68,10 @@ function scrollAnim(e) {
             LSection.style.opacity = 1;
             RSection.style.opacity = 1;
 
-            upBtn.href = `#card${j-1}`
-            downBtn.href = `#card${j+1}`
+            var upNum = Math.max(1, j-1);
+            var downNum = Math.min(3, j+1);
+            upBtn.href = `#card${upNum}`
+            downBtn.href = `#card${downNum}`
         }
     }
 }

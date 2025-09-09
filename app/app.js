@@ -28,10 +28,10 @@ function scrollAnim(e) {
         const RSection = RSec[j];
         var depthPct = (depth - (j*100)) / 100;
         var transform = 1 / Math.sqrt((-2 * depthPct) + 1);
-        var translate =  (1 / Math.sqrt((-1 * depthPct) + 0.5)) - 1.4142;
+        var translate =  (0.25 * Math.pow(depthPct, 3)) + (0.389286 * Math.pow(depthPct, 2)) + (-0.125 * depthPct) + 0.651429
         translate = 5 * translate;
 
-        LSection.style.left = `${15 - translate}vw`;
+        LSection.style.left = `${10 - translate}vw`;
         LSection.style.perspective = `${10 * transform}vw`;
 
         RSection.style.left = `${55 + translate}vw`;

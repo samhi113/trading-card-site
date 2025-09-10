@@ -35,15 +35,6 @@ html {
   display: none; /* Older Safari and Chromium */
 }
 
-#qr {
-  z-index: 99999;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 10vw;
-  max-height: 20vw;
-}
-
 nav {
   height: 20vh;
 }
